@@ -1,0 +1,43 @@
+﻿@model Helga_ProiectMPA.Models.LibraryViewModels.PublisherIndexData
+@{
+    ViewData["Title"] = "Publishers";
+}
+<h2>Publishers</h2>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    @if (Model.Playlists != null)
+    {
+        <h3>Playlists Published by Selected Publisher</h3>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Price</th>
+            </tr>
+            @foreach (var item in Model.Playlists)
+            {
+                string selectedRow = "";
+                if (item.ID == (int?)ViewData["PlaylistID"])
+                {
+                    selectedRow = "success";
+                }
+                <tr class="@selectedRow">
+                    <td>
+                        @Html.ActionLink("Select", "Index", new { playlistID = item.ID })
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        @item.Author
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                </tr>
+            }
+        </table>
+    }

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Helga_ProiectMPA.Models.LibraryViewModels.OrderGroup>
+@{
+    ViewData["Title"] = "Ordered Playlists Statistics";
+}
+<h2>Ordered Playlists Statistics</h2>
+<table>
+    <tr>
+        <th>
+            Ordering Date
+        </th>
+        <th>
+            Ordered Playlists
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderingDate)
+            </td>
+            <td>
+                @item.PlaylistCount
+            </td>
+        </tr>
+    }
+</table>
