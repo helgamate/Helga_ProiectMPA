@@ -42,5 +42,10 @@ namespace Helga_ProiectMPA.Controllers
             };
             return View(await data.AsNoTracking().ToListAsync());
         }
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
     }
 }

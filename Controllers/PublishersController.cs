@@ -97,6 +97,7 @@ namespace Helga_ProiectMPA.Controllers
             .Include(i => i.PublishedPlaylists).ThenInclude(i => i.Playlist)
             .AsNoTracking()
             .FirstOrDefaultAsync(m => m.ID == id);
+
             if (publisher == null)
             {
                 return NotFound();
@@ -207,14 +208,13 @@ namespace Helga_ProiectMPA.Controllers
             {
                 return NotFound();
             }
+
             var publisherToUpdate = await _context.Publishers
             .Include(i => i.PublishedPlaylists)
             .ThenInclude(i => i.Playlist)
             .FirstOrDefaultAsync(m => m.ID == id);
-            if (await TryUpdateModelAsync<Publisher>(
-            publisherToUpdate,
-            "",
-            i => i.PublisherName, i => i.Adress))
+
+            if (await TryUpdateModelAsync<Publisher>(publisherToUpdate,"",i => i.PublisherName, i => i.Adress))
             {
                 UpdatePublishedPlaylists(selectedPlaylists, publisherToUpdate);
                 try
@@ -249,12 +249,7 @@ namespace Helga_ProiectMPA.Controllers
                 {
                     if (!publishedPlaylists.Contains(playlist.ID))
                     {
-                        publisherToUpdate.PublishedPlaylists.Add(new PublishedPlaylist
-                        {
-                            PublisherID =
-                       publisherToUpdate.ID,
-                            PlaylistID = playlist.ID
-                        });
+                        publisherToUpdate.PublishedPlaylists.Add(new PublishedPlaylist{ PublisherID =publisherToUpdate.ID,PlaylistID = playlist.ID});
                     }
                 }
                 else

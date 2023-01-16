@@ -37,7 +37,7 @@ namespace Helga_ProiectMPA.Data
                     new Publisher{PublisherName="Musical",Adress="Str. Aviatorilor, nr. 40, Bucuresti"},
                     new Publisher{PublisherName="Lyrics",Adress="Str. Plopilor, nr. 35, Ploiesti"},
                     new Publisher{PublisherName="Notes",Adress="Str. Cascadelor, nr.22, Cluj-Napoca"},
-                };
+                }
                 foreach (Publisher p in publishers)
                 {
                     context.Publishers.Add(p);
